@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+			PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+					"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 
+		mybatis 활동 방식 설정
+		
+		cacheEnabled		: 같은 질의명령이라면 캐싱 기능 사용여부를 결정하는 속성. 기본값: true
+		
+		useGeneratedKeys	: 생성키에 대한 JDBC 지원을 허용하는 속성
+								드라이버마다 조금씩 다르게 작동한다
+		
+		defaultExecutorType	: default 실행자 설정
+		
+								REUSE	: PreparedStatement를 재사용
+								SIMPLE	: 특별히 하는 것이 없다
+								BATCH	: 구문을 재사용하고 수정을 배치 처리
+	 -->
+	 
+	 <settings>
+	 	<setting name="cacheEnabled" value="false" />
+	 	<setting name="useGeneratedKeys" value="true" />
+	 	<setting name="defaultExecutorType" value="REUSE" />
+	 </settings>
+	 
+	 <!-- 
+	 		mybatis에서 사용할 타입 정의
+	 			mybatis는 자바가 아니므로 원칙적으로 자바의 데이터타입을 인식할 수 없다
+	 			따라서 자바의 특정 데이터타입이 필요하면 해당 클래스의 경로를 알려주고
+	 			그 클래스에 대한 타입을 만들어줘야 한다
+	 			그런데 자바에서 흔히 사용하는 정수형이나 맵 아니면 문자열 같은 타입들은
+	 			사용빈도가 높기 때문에, mybatis가 버젼업되면서 내부에 미리 매핑 처리를 해 놓았다
+	 			
+	 			따라서 필요한 데이터타입이 있다면 typeAliases 태그에 추가해서 사용하면 된다
+	  -->
+	  <typeAliases>
+	  	<typeAlias alias="mVO" type="com.pageturner.mh.vo.MemberVO"/>
+	  <!-- 	
+	  	<typeAlias alias="fVO" type="com.pageturner.mh.vo.ProfileVO"/>
+	  	<typeAlias alias="bVO" type="com.pageturner.mh.vo.BoardVO"/>
+	  	<typeAlias alias="page" type="com.pageturner.mh.util.PageUtil"/>
+	  	 -->
+	  </typeAliases>
+	  
+	  <!-- 
+	  		mybatis에서 사용할 질의명령을 추가
+	  		
+	  		mybatis는 질의명령을 xml 파일에 저장해두고,
+	  		해당 파일의 내용 중 필요한 질의명령만 선택해서 데이터베이스 처리를 하는 방식을 사용한다
+	  		따라서 해당 파일이 어떤 것을 사용할 것인지 밝혀줘야 그 파일 내부에 만들어놓은
+	  		질의명령을 사용할 수 있다
+	  		
+	  			형식]
+	  				<mappers>
+	  					<mapper resource="사용할 xml1 파일의 경로" />
+	  					<mapper resource="사용할 xml2 파일의 경로" />
+	  						...
+	  				</mappers>
+	   -->
+	  
+	  <mappers>
+	  	<mapper resource="com/pageturner/mh/sql/MemberSQL.xml" />
+	  	<!-- 
+	  	<mapper resource="com/pageturner/mh/sql/BoardSQL.xml" />
+	  	 -->
+	  </mappers>
+</configuration>

@@ -1,0 +1,100 @@
+html, body {
+	height: 100%;
+	margin-bottom: 0px;
+}
+
+.mxw {
+	max-width: 700px;
+}
+.mxw2 {
+	max-width: 1000px;
+}
+
+.box {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+}
+.h-100 {
+	height: 100%;
+}
+.h300 {
+	height: 300px;
+}
+.h450 {
+	height: 450px;
+}
+.mb0 {
+	margin-bottom: 0px;
+}
+.mb5 {
+	margin-bottom: 5px;
+}
+.mb10 {
+	margin-bottom: 10px;
+}
+.w-100 {
+	width: 100px;
+}
+.w-150 {
+	width: 150px;
+}
+.w-200 {
+	width: 200px;
+}
+.inblock {
+	display: inline-block
+}
+.pd-10 {
+	padding: 10px;
+}
+.pdh-10 {
+	padding: 0px 10px;
+}
+.pdh-5 {
+	padding: 0px 5px;
+}
+.mg-0 {
+	margin: 0px!important;
+}
+.pd-0 {
+	padding: 0px0px!important;
+}
+.pd-left-10 {
+	padding-left: 10px;
+	
+}
+.pd-left-20 {
+	padding-left: 20px;
+	
+}
+.pv-50 {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.pd-left-80 {
+	padding-left: 80px;
+}
+.dnone {
+	display: none;
+}
+.f16 {
+	color: gray;
+	font-size: 16pt;
+	font-weight: bold;
+}
+.imgwin {
+	display: inline-block;
+	width: 190px;
+	height: auto;
+	overflow: hidden;
+}
+.imgwin1 {
+	display: inline-block;
+	width: 190px;
+	height: 110px;
+	overflow: hidden;
+	margin-left: -95px;
+	margin-bottom: 10px;
+}
