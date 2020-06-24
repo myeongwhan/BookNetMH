@@ -12,10 +12,10 @@
 	<bean id="mDAO" class="com.pageturner.mh.dao.MemberDAO" />
 	
 	<!-- 게시판 관련 데이터베이스 작업 dao 빈처리 -->
-	<bean id="bDAO" class="com.pageturner.mh.dao.BoardDAO" />
+<!-- 	<bean id="bDAO" class="com.pageturner.mh.dao.BoardDAO" /> -->
 	<!-- 
 	 -->
 	 
 	<!-- 댓글게시판 관련 데이터베이스 작업 dao 빈처리 -->
-	<bean id="rDAO" class="com.pageturner.mh.dao.ReBoardDAO" />
+<!-- 	<bean id="rDAO" class="com.pageturner.mh.dao.ReBoardDAO" /> -->
 </beans>

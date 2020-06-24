@@ -1,4 +1,4 @@
-package com.pageturner.mh;
+package com.pageturner.mh.home;
 
 import java.text.DateFormat;
 import java.util.Date;

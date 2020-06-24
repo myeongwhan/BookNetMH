@@ -1,35 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-		xml 파일의 구조
-			1. [필수]	첫 번째 줄은 반드시 header가 존재해야 한다
-				<?xml version="1.0" encoding="UTF-8"?>
-			2. [선택]	DTD 파일이나 스키마 파일을 선언한다
-			3. [필수]	xml 파일은 반드시 단 하나의 루트태그를 가져야 한다
-						루트태그는 사용하는 스키마나 DTD에서 정해놓은 것만 사용할 수 있다
- -->
 <!DOCTYPE mapper
 			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 
-		namespace란?
-			이 파일과 같은 질의명령을 작성해놓은 xml파일이 여러 개 존재할 경우,
-			각각의 질의명령은 구분이 되어야 할 것이고
-			그보다 먼저 각각의 문서가 구분이 되어야 할 것이다
-			그때 각 문서를 구분할 목적으로 별칭을 부여하는 방법이
-			루트태그에 namespace 속성을 부여하는 것이다
-			
-			***
-			각각의 SQL xml 파일마다 namespace값이 모두 달라야 한다
-			
-			지정하는 방법
-				1. 일반 문자로 지정하는 방법
-					==> mSQL
-					
-				2. 패키지 형태로 지정하는 방법
-					==> com.increpas.cls.member.???.???? 의 형태
- -->
- 
 <mapper namespace="mSQL">
 	<sql id="selCNT">
 		SELECT
@@ -75,53 +48,22 @@
 		
 	</insert>
 	
-	<!-- resultType은 한 줄 데이터를 담을 (mybatis의)데이터타입만 생각해서 적으면 됨 -->
-	<select id="nameList" resultType="mVO">
-		SELECT
-			mno, name
-		FROM
-			member
-		WHERE
-			isshow = 'Y'
-	</select>
-	
-	<!-- mno로 회원상세정보 뽑기 -->
-	<select id="mDetail" resultType="mVO" parameterType="int">
-		SELECT
-			mno, name, id, mail, tel, bDate, m.ano,
-			DECODE(m.gen, 'M', '남자', 'F', '여자') gen,
-			joindate jDate, joindate jTime, savename avatar
-		FROM
-			member m, avatar a
-		WHERE
-			mno = #{mno}
-			AND m.ano = a.ano
-	</select>
-	
-	<!-- mno뽑기 -->
-	<select id="mno" resultType="int" parameterType="String">
-		SELECT
-			mno
-		FROM
-			member
-		WHERE
+	<update id="editUser" parameterType="mVO">
+		update
+			membertab
+		set
+		<!-- trim 써야댐 -->
+			pw = #{pw}
+			mail = #{mail}
+			tel = #{tel}
+			interest = #{interest}
+			nickname = #{nickname}
+			describe = #{describe}
+			intershow = #{intershow}
+			birthshow = #{birthshow}
+			genshow = #{genshow}
+		where
 			id = #{id}
-	</select>
-	
-	<!-- 정보수정(비번 또는 아바타. MemberVO) -->
-	<update id="editMember" parameterType="mVO">
-		UPDATE
-			member
-		<trim prefix="SET" suffixOverrides=",">
-			<if test="pw neq ''">
-				pw = #{pw},
-			</if>
-			<if test="ano neq 0">
-				ano = #{ano},
-			</if>
-		</trim>
-		WHERE
-			mno = #{mno}
 	</update>
 	
 </mapper>

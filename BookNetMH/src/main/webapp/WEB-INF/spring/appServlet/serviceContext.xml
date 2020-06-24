@@ -9,7 +9,11 @@
 						https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 회원관련 데이터베이스 처리 service 빈처리 -->
+	<!-- 
 	<bean id="fSrvc" class="com.pageturner.mh.service.ProfileService" />
+	<bean id="fUtil" class="com.pageturner.mh.util.FileUtil" />
+	 -->
 	<bean id="mSrvc" class="com.pageturner.mh.service.MemberService" />
+	
 	
 </beans>
