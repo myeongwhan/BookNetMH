@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.pageturner.mh.dao.MemberDAO;
 import com.pageturner.mh.service.MemberService;
+import com.pageturner.mh.util.Dice;
 import com.pageturner.mh.vo.MemberVO;
 
 @Controller
@@ -50,52 +51,35 @@ public class Member {
 	
 	// 아디비번찾기
 	@RequestMapping("/findID.cls")
-	public ModelAndView findID(ModelAndView mv) {
+	public ModelAndView findID(HttpServletRequest req, ModelAndView mv) {
 		String view = "member/findID";
 		mv.setViewName(view);
 		return mv;
 	}
 	
+	// 이명환
 	// 메일인증
 	@RequestMapping("/mail.cls")
 	@ResponseBody
-	public String mailProc(HttpServletRequest req, String mail) {
-		//인증 번호 생성기
-		StringBuffer temp = new StringBuffer();
-		Random rnd = new Random();
-		for(int i=0;i<10;i++){
-			int rIndex = rnd.nextInt(3);
-	        switch (rIndex) {
-	        case 0:
-	            // a-z
-	            temp.append((char) ((int) (rnd.nextInt(26)) + 97));
-	            break;
-	        case 1:
-	            // A-Z
-	            temp.append((char) ((int) (rnd.nextInt(26)) + 65));
-	            break;
-	        case 2:
-	            // 0-9
-	            temp.append((rnd.nextInt(10)));
-	            break;
-	        }
-	    }
-	    String cout = temp.toString();
-//      System.out.println(AuthenticationKey);
+	public String mailProc(HttpServletRequest req) {
+		Dice dice = new Dice();
+	    String cout = dice.Dice();
 		
 	    try {
 	    	MimeMessage msg = mailSender.createMimeMessage();
 	    	MimeMessageHelper msgHelper = new MimeMessageHelper(msg, true, "UTF-8");
 	    	msgHelper.setFrom("myeongwhan@gmail.com");
 	    	msgHelper.setTo(req.getParameter("mail"));
-//	    	msgHelper.setSubject(subject);
-	    	msgHelper.setText(cout);
+	    	msgHelper.setSubject("회원가입 인증메일 발송");
+	    	msgHelper.setText("인증번호는 " + cout + " 입니다");
 	    	
 	    	mailSender.send(msg);
 	    } catch(Exception e) {
 	    	e.printStackTrace();
 	    }
 	    
-	    return cout;
+	    String str = "{\"tno\": \"" + cout + "\"}";
+	    
+	    return str;
 	}
 }

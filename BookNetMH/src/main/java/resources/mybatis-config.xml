@@ -37,8 +37,8 @@
 	  -->
 	  <typeAliases>
 	  	<typeAlias alias="mVO" type="com.pageturner.mh.vo.MemberVO"/>
-	  <!-- 	
 	  	<typeAlias alias="fVO" type="com.pageturner.mh.vo.ProfileVO"/>
+	  <!-- 	
 	  	<typeAlias alias="bVO" type="com.pageturner.mh.vo.BoardVO"/>
 	  	<typeAlias alias="page" type="com.pageturner.mh.util.PageUtil"/>
 	  	 -->
