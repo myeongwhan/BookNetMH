@@ -82,4 +82,11 @@ public class Member {
 	    
 	    return str;
 	}
+	
+	// 지도 테스트
+	@RequestMapping("/mapmap.cls")
+	public ModelAndView mapmap(ModelAndView mv) {
+		mv.setViewName("member/mapmap");
+		return mv;
+	}
 }
