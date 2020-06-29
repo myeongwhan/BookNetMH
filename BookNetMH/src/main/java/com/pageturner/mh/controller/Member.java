@@ -1,11 +1,8 @@
 package com.pageturner.mh.controller;
 
-import java.util.Random;
-
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,12 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.pageturner.mh.dao.MemberDAO;
 import com.pageturner.mh.service.MemberService;
 import com.pageturner.mh.util.Dice;
-import com.pageturner.mh.vo.MemberVO;
 
 @Controller
 @RequestMapping("/member")
@@ -87,6 +82,13 @@ public class Member {
 	@RequestMapping("/mapmap.cls")
 	public ModelAndView mapmap(ModelAndView mv) {
 		mv.setViewName("member/mapmap");
+		return mv;
+	}
+	
+	// 지도 테스트2
+	@RequestMapping("/mapmap2.cls")
+	public ModelAndView mapmap2(ModelAndView mv) {
+		mv.setViewName("member/mapmap2");
 		return mv;
 	}
 }
