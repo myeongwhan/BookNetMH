@@ -91,4 +91,11 @@ public class Member {
 		mv.setViewName("member/mapmap2");
 		return mv;
 	}
+	
+	// 지도 테스트3
+	@RequestMapping("/mapmap3.cls")
+	public ModelAndView mapmap3(ModelAndView mv) {
+		mv.setViewName("member/mapmap3");
+		return mv;
+	}
 }

@@ -31,7 +31,7 @@
 	var ps = new kakao.maps.services.Places(); 
 
 	// 키워드로 장소를 검색합니다
-	ps.keywordSearch('서점', placesSearchCB); 
+	ps.keywordSearch('구로구 서점', placesSearchCB); 
 
 	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 	function placesSearchCB (data, status, pagination) {
@@ -47,7 +47,7 @@
 	        }       
 
 	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-// 	        map.setBounds(bounds);
+	        map.setBounds(bounds);
 	    } 
 	}
 
