@@ -98,4 +98,53 @@ public class Member {
 		mv.setViewName("member/mapmap3");
 		return mv;
 	}
+	
+	// indexOf, substring 테스트
+	@RequestMapping("/mapstring.cls")
+	public ModelAndView mapstring(ModelAndView mv) {
+		mv.setViewName("member/mapstring");
+		return mv;
+	}
+	
+	// 지도 테스트 최종
+	@RequestMapping("/mapmap_final.cls")
+	public ModelAndView mapmap_final(ModelAndView mv) {
+		mv.setViewName("member/mapmap_final");
+		return mv;
+	}
+	
+	// 지도 테스트 최종
+	@RequestMapping("/mapmap_final2.cls")
+	public ModelAndView mapmap_final2(ModelAndView mv) {
+		mv.setViewName("member/mapmap_final2");
+		return mv;
+	}
+	
+	// callback 테스트
+	@RequestMapping("/callbacktest.cls")
+	public ModelAndView callbacktest(ModelAndView mv) {
+		mv.setViewName("member/callbacktest");
+		return mv;
+	}
+	
+	// ajax 테스트
+	@RequestMapping("/mapajaxtest.cls")
+	public ModelAndView mapajaxtest(ModelAndView mv) {
+		mv.setViewName("member/mapajaxtest");
+		return mv;
+	}
+	
+	// callback 테스트2
+	@RequestMapping("/callbacktest2.cls")
+	public ModelAndView callbacktest2(ModelAndView mv) {
+		mv.setViewName("member/callbacktest2");
+		return mv;
+	}
+	
+	// coord2RegionCode 테스트
+	@RequestMapping("/coord2RegionCode.cls")
+	public ModelAndView coord2RegionCode(ModelAndView mv) {
+		mv.setViewName("member/coord2RegionCode");
+		return mv;
+	}
 }

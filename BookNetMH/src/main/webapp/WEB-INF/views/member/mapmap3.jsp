@@ -67,7 +67,7 @@ kakao.maps.event.addListener(map, 'idle', function() {
 
 function searchAddrFromCoords(coords, callback) {
     // 좌표로 행정동 주소 정보를 요청합니다
-    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
 }
 
 function searchDetailAddrFromCoords(coords, callback) {
@@ -76,8 +76,8 @@ function searchDetailAddrFromCoords(coords, callback) {
 }
 
 // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+var qwer = '';
 function displayCenterInfo(result, status) {
-	var qwer = '';
     if (status === kakao.maps.services.Status.OK) {
         var infoDiv = document.getElementById('centerAddr');
 
@@ -89,9 +89,11 @@ function displayCenterInfo(result, status) {
                 break;
             }
         }
-    }    
+    }
 	alert(qwer);
+    return qwer;
 }
+
 	</script>
 </body>
 </html>
