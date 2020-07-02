@@ -72,13 +72,13 @@
 		
 		// 1
 		navigator.geolocation.getCurrentPosition(function(position) {
-			alert('현재위치 실행');
+// 			alert('현재위치 실행');
 			var lat = position.coords.latitude; // 위도
 			lon = position.coords.longitude;// 경도
 			map.setCenter(new kakao.maps.LatLng(lat, lon));
 // 			alert(map.getCenter().getLng());
-			alert('현재위치 종료');
-			alert(qwer);
+// 			alert('현재위치 종료');
+// 			alert(qwer);
 		});
 
 // 		주소-좌표 변환 객체를 생성합니다
@@ -86,19 +86,19 @@
 
 		// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
 		kakao.maps.event.addListener(map, 'idle', function() {
-			alert('좌표바뀜 실행');
+// 			alert('좌표바뀜 실행');
 			searchAddrFromCoords(map.getCenter(), displayCenterInfo);
-			alert('qwer = ' + qwer);
-			alert('좌표바뀜 종료 ');
+// 			alert('qwer = ' + qwer);
+// 			alert('좌표바뀜 종료 ');
 		});
 
 		function searchAddrFromCoords(coords, callback) {
 			// 좌표로 행정동 주소 정보를 요청합니다
-			alert('searchAddrFromCoords');
+// 			alert('searchAddrFromCoords');
 // 			alert(coords.getLng());
 			asdf = geocoder.coord2RegionCode(coords.getLng(), coords.getLat(),
 					callback);
-			alert('searchAddrFromCoords 종료');
+// 			alert('searchAddrFromCoords 종료');
 		}
 
 		function searchDetailAddrFromCoords(coords, callback) {
@@ -117,23 +117,28 @@
 					if (result[i].region_type === 'H') {
 						infoDiv.innerHTML = result[i].address_name;
 						qwer = result[i].address_name;
+						alert(qwer);
  						break;
 					}
 				}
 			}
-			alert(qwer);
-			alert(typeof qwer);
+// 			alert(qwer);
+// 			alert(typeof qwer);
 		}
 
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places();
 
+		alert(qwer);
 		// 키워드로 장소를 검색합니다
-		ps.keywordSearch(qwer, placesSearchCB);
+		setTimeout(function(){
+			ps.keywordSearch(qwer, placesSearchCB);
+		}, 5000);
 
 		// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 		function placesSearchCB(data, status, pagination) {
 			alert('키워드검색 실행');
+			alert(qwer);
 			if (status === kakao.maps.services.Status.OK) {
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해

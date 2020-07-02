@@ -14,7 +14,7 @@
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e007890c1de552b09210e1d028ac98d&libraries=services"></script>
-	<script>
+	<script type="text/javascript">
 	// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
@@ -27,25 +27,27 @@
 	// 지도를 생성합니다    
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	
-	navigator.geolocation.getCurrentPosition(function(position){
-		alert('현재위치 실행');
+	setTimeout(navigator.geolocation.getCurrentPosition(function(position){
+// 		alert('현재위치 실행');
 		var lat = position.coords.latitude;	// 위도
 		lon = position.coords.longitude;// 경도
 // 		alert(lat);
 // 		alert(lon);
 	map.setCenter(new kakao.maps.LatLng(lat, lon));
 
-	});
+	}), 3000);
 
 	// 장소 검색 객체를 생성합니다
 	var ps = new kakao.maps.services.Places(); 
 
 	// 키워드로 장소를 검색합니다
-	ps.keywordSearch('서울 구로구 서점', placesSearchCB); 
+	setTimeout(function(){
+		ps.keywordSearch('서울 구로구 서점', placesSearchCB); 
+	}, 6000);
 
 	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 	function placesSearchCB (data, status, pagination) {
-		alert('키워드검색 시작');
+// 		alert('키워드검색 시작');
 	    if (status === kakao.maps.services.Status.OK) {
 
 	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -56,13 +58,13 @@
 	            displayMarker(data[i]);    
 	            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
 	        }       
-			alert('마커 종료');
+// 			alert('마커 종료');
 
 	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-			alert('지도범위 재설정');
+// 			alert('지도범위 재설정');
 	        map.setBounds(bounds);
 	    } 
-		alert('키워드검색 종료');
+// 		alert('키워드검색 종료');
 	}
 
 	// 지도에 마커를 표시하는 함수입니다
