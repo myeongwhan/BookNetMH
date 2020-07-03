@@ -10,7 +10,6 @@
 <body>
 	<!-- 지도를 표시할 div 입니다 -->
 	<div id="map" style="width: 100%; height: 350px;"></div>
-	<button id="delete">asdf</button>
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e007890c1de552b09210e1d028ac98d&libraries=services"></script>
@@ -24,26 +23,62 @@
 	        level: 3 // 지도의 확대 레벨
 	    };  
 
-	// 지도를 생성합니다    
+	// 1. 지도를 생성합니다    
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	
-	setTimeout(navigator.geolocation.getCurrentPosition(function(position){
+	navigator.geolocation.getCurrentPosition(function(position){
 // 		alert('현재위치 실행');
-		var lat = position.coords.latitude;	// 위도
+		lat = position.coords.latitude;	// 위도
 		lon = position.coords.longitude;// 경도
 // 		alert(lat);
 // 		alert(lon);
-	map.setCenter(new kakao.maps.LatLng(lat, lon));
+		map.setCenter(new kakao.maps.LatLng(lat, lon));
+	});
+	
+	// 2. 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	setTimeout(function(){
+		geocoder.coord2RegionCode(lon, lat, displayInfo);
+	}, 50);
+	
+	// 3. 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+	function displayInfo(result, status) {
+// 		alert('# displayCenterInfo');
+		if (status === kakao.maps.services.Status.OK) {
 
-	}), 3000);
+			for (var i = 0; i < result.length; i++) {
+				// 행정동의 region_type 값은 'H' 이므로
+				if (result[i].region_type === 'H') {
+					qwer = result[i].address_name;
+// 					alert(qwer);
+					break;
+				}
+			}
+		}
+//			alert(qwer);
+//			alert(typeof qwer);
+	}
+	
+	setTimeout(function(){
+// 		alert(qwer);
+		asdf = qwer.lastIndexOf('동');
+// 		alert(asdf);
+		keyword = qwer.substring(0, asdf+1) + ' 서점';
+// 		alert(keyword);
+	}, 150);
 
 	// 장소 검색 객체를 생성합니다
 	var ps = new kakao.maps.services.Places(); 
 
-	// 키워드로 장소를 검색합니다
+	// 4. 키워드로 장소를 검색합니다
 	setTimeout(function(){
-		ps.keywordSearch('서울 구로구 서점', placesSearchCB); 
-	}, 6000);
+		ps.keywordSearch(keyword, placesSearchCB); 
+	}, 300);
+	
+	setTimeout(function(){
+		myLoc();
+	}, 450);
 
 	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 	function placesSearchCB (data, status, pagination) {
@@ -67,7 +102,7 @@
 // 		alert('키워드검색 종료');
 	}
 
-	// 지도에 마커를 표시하는 함수입니다
+	// 5. 지도에 마커를 표시하는 함수입니다
 	function displayMarker(place) {
 	    
 	    // 마커를 생성하고 지도에 표시합니다
@@ -80,6 +115,32 @@
 	    kakao.maps.event.addListener(marker, 'click', function() {
 	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
 	        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+	        infowindow.open(map, marker);
+	    });
+	}
+	
+	function myLoc() {
+		var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/2009/map/icon/ico_mn_13.png', // 마커이미지의 주소입니다    
+	    imageSize = new kakao.maps.Size(40, 44), // 마커이미지의 크기입니다
+	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	      
+		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+		    markerPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치입니다
+	
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition, 
+		    image: markerImage // 마커이미지 설정 
+		});
+	
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+		
+		// 마커에 클릭이벤트를 등록합니다
+	    kakao.maps.event.addListener(marker, 'click', function() {
+	        // 마커를 클릭하면 '내 위치'가 인포윈도우에 표출됩니다
+	        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + '내 위치' + '</div>');
 	        infowindow.open(map, marker);
 	    });
 	}
