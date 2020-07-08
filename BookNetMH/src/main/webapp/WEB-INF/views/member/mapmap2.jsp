@@ -65,7 +65,7 @@
 		asdf = qwer.lastIndexOf('동');
 // 		alert(asdf);
 		keyword = qwer.substring(0, asdf+1) + ' 서점';
-// 		alert(keyword);
+		alert(keyword);
 	}, 150);
 
 	// 장소 검색 객체를 생성합니다
