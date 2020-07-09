@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!-- 지도를 표시할 div 입니다 -->
-	<div id="map" style="width: 100%; height: 350px;"></div>
+	<div id="map" style="max-width: 500px; height: 350px;"></div>
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e007890c1de552b09210e1d028ac98d&libraries=services"></script>
@@ -64,7 +64,7 @@
 // 		alert(qwer);
 		asdf = qwer.lastIndexOf('동');
 // 		alert(asdf);
-		keyword = qwer.substring(0, asdf+1) + ' 서점';
+		keyword = qwer.substring(0, asdf+1) + ' 도서관';
 		alert(keyword);
 	}, 150);
 
